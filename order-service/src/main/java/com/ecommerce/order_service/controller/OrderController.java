@@ -3,16 +3,19 @@ package com.ecommerce.order_service.controller;
 import com.ecommerce.order_service.dto.OrderRequest;
 import com.ecommerce.order_service.dto.OrderResponse;
 import com.ecommerce.order_service.service.OrderService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/orders")
-@RequiredArgsConstructor
 public class OrderController {
 
     private final OrderService orderService;
+
+    // Manual constructor instead of @RequiredArgsConstructor
+    public OrderController(OrderService orderService) {
+        this.orderService = orderService;
+    }
 
     @PostMapping
     public ResponseEntity<OrderResponse> placeOrder(@RequestBody OrderRequest request) {

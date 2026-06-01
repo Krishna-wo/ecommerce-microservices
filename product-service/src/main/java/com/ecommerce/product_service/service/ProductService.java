@@ -4,16 +4,19 @@ import com.ecommerce.product_service.dto.ProductRequest;
 import com.ecommerce.product_service.dto.ProductResponse;
 import com.ecommerce.product_service.entity.Product;
 import com.ecommerce.product_service.repository.ProductRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class ProductService {
 
     private final ProductRepository productRepository;
+
+    // Manual constructor instead of @RequiredArgsConstructor
+    public ProductService(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
 
     public ProductResponse addProduct(ProductRequest request) {
         Product product = new Product();
